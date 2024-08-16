@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "python_project_temp"
+version = "0.0.1"
+authors = [
+    {name = "Gao Feng", email = "gf0517@gmail.com"},
+]
+description = "This is a file structure template for a empty python project."
+readme = "README.md"
+requires-python = ">=3.7"
+keywords = ["template"]
+license = {text = "MIT"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+]
+dependencies = [
+]
+
+[project.urls]
+"Homepage" = "https://github.com/gaofengg/python_project_temp"
