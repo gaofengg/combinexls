@@ -1,2 +1,2 @@
-# combinexsl
-Scripts to combinexsl multiple excel files
+# combinexls
+Scripts to combinexls multiple excel files
