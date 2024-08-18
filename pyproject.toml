@@ -3,16 +3,16 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "python_project_temp"
+name = "combinexls"
 version = "0.0.1"
 authors = [
     {name = "Gao Feng", email = "gf0517@gmail.com"},
 ]
-description = "This is a file structure template for a empty python project."
+description = "Scripts to combinexls multiple excel files."
 readme = "README.md"
-requires-python = ">=3.7"
-keywords = ["template"]
-license = {text = "MIT"}
+requires-python = ">=3.10"
+keywords = ["combinexls", "excel", "python"]
+license = {text = "BSD-3-Clause"}
 classifiers = [
     "Programming Language :: Python :: 3",
 ]
@@ -20,4 +20,4 @@ dependencies = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/gaofengg/python_project_temp"
+"Homepage" = "https://github.com/gaofengg/combinexls"
