@@ -2,6 +2,8 @@
 import os
 from openpyxl import load_workbook
 from openpyxl import Workbook
+import shutil
+import time
 
 from utils import xl_trans
 
@@ -19,7 +21,7 @@ def combinexsl(work_path, gen_path):
     workbook_first = Workbook()
     worksheet_first = workbook_first.create_sheet("Sheet1")
     for index, file in enumerate(file_list):
-        print(index, file)
+        # print(index, file)
         if index == 0:
             # 使用openpyxl读取第一个Excel文件
             workbook_first = load_workbook(gen_path + file)
@@ -50,7 +52,8 @@ def combinexsl(work_path, gen_path):
                 # 复制样式
                 copy_cell_style(cell, target_cell)
 
-    workbook_first.save(work_path + "combined.xlsx")
+    workbook_first.save(work_path + "combined_" + str(int(time.time())) + ".xlsx")
+    shutil.rmtree(gen_path[:-1])
 
 
 if __name__ == "__main__":
