@@ -18,10 +18,11 @@ def combinexsl():
     parser = argparse.ArgumentParser()
     parser.add_argument("path", help="combine xlsx workspace path")
     args = parser.parse_args()
-    work_path = args.path
+    work_path_ = args.path
 
-    gen_path = work_path + 'xlsx/'
-    rs = xl_trans.to_xlsx(work_path)
+    work_path = Path(work_path_)
+    gen_path = work_path / 'xlsx'
+    rs = xl_trans.to_xlsx(str(work_path))
     if not rs: 
         return
     workbook_first = Workbook()
@@ -30,11 +31,11 @@ def combinexsl():
         file = file_.name
         if index == 0:
             # 使用openpyxl读取第一个Excel文件
-            workbook_first = load_workbook(gen_path + file)
+            workbook_first = load_workbook(str(gen_path / file))
             worksheet_first_name = workbook_first.sheetnames[0]
             worksheet_first = workbook_first[worksheet_first_name]
             continue
-        workbook_next = load_workbook(gen_path + file)
+        workbook_next = load_workbook(str(gen_path / file))
         worksheet_next_name = workbook_next.sheetnames[0]
         worksheet_next = workbook_next[worksheet_next_name]
 
@@ -58,11 +59,12 @@ def combinexsl():
                 # 复制样式
                 copy_cell_style(cell, target_cell)
 
-    combined_file_name = work_path + "combined_" + str(int(time.time())) + ".xlsx"
+    xfile_name = "combined_" + str(int(time.time())) + ".xlsx"
+    combined_file_name = work_path / xfile_name
     workbook_first.save(combined_file_name)
     
     if Path(gen_path).exists():
-        shutil.rmtree(gen_path[:-1])
+        shutil.rmtree(str(gen_path))
 
 
 if __name__ == "__main__":
