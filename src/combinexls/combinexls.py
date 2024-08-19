@@ -1,11 +1,10 @@
 # encoding: utf-8
-import os
 from openpyxl import load_workbook
 from openpyxl import Workbook
 import shutil
 import time
-from openpyxl.styles import Font
 import argparse
+from pathlib import Path
 
 from utils import xl_trans
 
@@ -22,13 +21,13 @@ def combinexsl():
     work_path = args.path
 
     gen_path = work_path + 'xlsx/'
-    xl_trans.to_xlsx(work_path)
-    # 使用 openpyxl 读取 ./xlsx/ 目录下的第一个文件
-    file_list = [file for file in os.listdir(gen_path) if file.endswith(".xlsx")]
+    rs = xl_trans.to_xlsx(work_path)
+    if not rs: 
+        return
     workbook_first = Workbook()
     worksheet_first = workbook_first.create_sheet("Sheet1")
-    for index, file in enumerate(file_list):
-        # print(index, file)
+    for index, file_ in enumerate(rs):
+        file = file_.name
         if index == 0:
             # 使用openpyxl读取第一个Excel文件
             workbook_first = load_workbook(gen_path + file)
@@ -62,7 +61,8 @@ def combinexsl():
     combined_file_name = work_path + "combined_" + str(int(time.time())) + ".xlsx"
     workbook_first.save(combined_file_name)
     
-    shutil.rmtree(gen_path[:-1])
+    if Path(gen_path).exists():
+        shutil.rmtree(gen_path[:-1])
 
 
 if __name__ == "__main__":
