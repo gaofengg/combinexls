@@ -6,7 +6,7 @@ import time
 import argparse
 from pathlib import Path
 
-from utils import xl_trans
+from combinexls.utils import xl_trans
 
 
 def copy_cell_style(source_cell, target_cell):

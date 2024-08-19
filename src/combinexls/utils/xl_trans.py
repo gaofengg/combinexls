@@ -39,5 +39,5 @@ def to_xlsx(parent_path) -> bool | Generator[Path, None, None]:
 
 
 if __name__ == "__main__":
-    # pass
-    to_xlsx("./")
+    pass
+    # to_xlsx("./")
