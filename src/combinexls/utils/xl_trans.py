@@ -5,7 +5,8 @@ import shutil
 import re
 
 
-def to_xlsx(parent_path, out_path):
+def to_xlsx(parent_path):
+    out_path = parent_path + "xlsx/"
 
     files_list = os.listdir(parent_path)
     xls_file_list = [xls_file for xls_file in files_list if xls_file.endswith(".xls")]
@@ -14,7 +15,6 @@ def to_xlsx(parent_path, out_path):
     for xls_file in xls_file_list:
         in_file = parent_path + xls_file
         out_file = out_path + xls_file.split(".")[0] + ".xlsx"
-        print(in_file, out_file)
         # # Read xls file
         x2x = XLS2XLSX(in_file)
         # # Write to xlsx file

@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "combinexls"
 version = "0.0.1"
 authors = [
-    {name = "Gao Feng", email = "gf0517@gmail.com"},
+    {name = "Gao Feng", email = "gaofengms@outlook.com"},
 ]
 description = "Scripts to combinexls multiple excel files."
 readme = "README.md"
