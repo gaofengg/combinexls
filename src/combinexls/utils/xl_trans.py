@@ -22,7 +22,7 @@ def trans_to_xlsx(parent_path_) -> bool | Generator[Path, None, None]:
         file = file_.name
         if file.lower().endswith(".xls"):
             in_file = parent_path / file
-            xfile_name = file.split(".")[0] + ".xlsx"
+            xfile_name = file + "x"
             out_file = out_path / xfile_name
             x2x = XLS2XLSX(str(in_file))
             x2x.to_xlsx(str(out_file))

@@ -66,8 +66,8 @@ def combinexls():
     workbook_first.save(combined_file_name)
     print("合并完成，合并后产生的文件名称为：", xfile_name)
     
-    if Path(gen_path).exists():
-        shutil.rmtree(str(gen_path))
+    # if Path(gen_path).exists():
+    #     shutil.rmtree(str(gen_path))
 
     os.system("pause")
 
