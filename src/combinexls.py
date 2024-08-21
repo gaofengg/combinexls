@@ -5,6 +5,7 @@ import shutil
 import time
 import argparse
 from pathlib import Path
+import os
 
 from combinexls.utils import xl_trans
 
@@ -14,7 +15,7 @@ def copy_cell_style(source_cell, target_cell):
     target_cell._style = source_cell._style
 
 
-def combinexsl():
+def combinexls():
     parser = argparse.ArgumentParser()
     parser.add_argument("path", help="combine xlsx workspace path")
     args = parser.parse_args()
@@ -22,13 +23,14 @@ def combinexsl():
 
     work_path = Path(work_path_)
     gen_path = work_path / 'xlsx'
-    rs = xl_trans.to_xlsx(str(work_path))
+    rs = xl_trans.trans_to_xlsx(str(work_path))
     if not rs: 
         return
     workbook_first = Workbook()
     worksheet_first = workbook_first.create_sheet("Sheet1")
     for index, file_ in enumerate(rs):
         file = file_.name
+        print('正在合并第 %d 个文件: %s' % (index + 1, file))
         if index == 0:
             # 使用openpyxl读取第一个Excel文件
             workbook_first = load_workbook(str(gen_path / file))
@@ -62,10 +64,13 @@ def combinexsl():
     xfile_name = "combined_" + str(int(time.time())) + ".xlsx"
     combined_file_name = work_path / xfile_name
     workbook_first.save(combined_file_name)
+    print("合并完成，合并后产生的文件名称为：", xfile_name)
     
     if Path(gen_path).exists():
         shutil.rmtree(str(gen_path))
 
+    os.system("pause")
+
 
 if __name__ == "__main__":
-    combinexsl()
+    combinexls()

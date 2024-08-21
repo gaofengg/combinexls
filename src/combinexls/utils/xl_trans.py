@@ -6,7 +6,7 @@ import re
 from pathlib import Path
 
 
-def to_xlsx(parent_path_) -> bool | Generator[Path, None, None]:
+def trans_to_xlsx(parent_path_) -> bool | Generator[Path, None, None]:
     parent_path = Path(parent_path_)
     out_path = parent_path / 'xlsx'
 
