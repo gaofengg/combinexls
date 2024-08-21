@@ -1,11 +1,12 @@
 # encoding: utf-8
-from typing import Generator
-from xls2xlsx import XLS2XLSX
-import shutil
 import re
+import shutil
+from typing import Generator
 from pathlib import Path
+from xls2xlsx import XLS2XLSX
 
 
+#
 def trans_to_xlsx(parent_path_) -> bool | Generator[Path, None, None]:
     parent_path = Path(parent_path_)
     out_path = parent_path / 'xlsx'
@@ -27,12 +28,12 @@ def trans_to_xlsx(parent_path_) -> bool | Generator[Path, None, None]:
             x2x.to_xlsx(str(out_file))
             if not has_xl:
                 has_xl = True
-        elif file.lower().endswith(".xlsx") and not re.search(r"_[0-9]{10}", file):
-            in_file = parent_path / file
+        elif file.lower().endswith(".xlsx") \
+                and not re.search(r"_\d{10}", file):
             shutil.copy(parent_path / file, out_path / file)
             if not has_xl:
                 has_xl = True
-    
+
     if not has_xl:
         return False
     else:
