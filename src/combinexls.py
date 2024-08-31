@@ -28,6 +28,17 @@ def combinexls():
         return
     workbook_first = Workbook()
     worksheet_first = workbook_first.create_sheet("Sheet1")
+
+    start_index = 0
+    while True:
+        try:
+            print('*' * 50)
+            start_index = int(input('请输入工作表数据块首行行号（按回车确认）: '))
+            print('*' * 50)
+            break
+        except ValueError as ve:
+            print('输入的数值有误!', ve)   
+
     for index, file_ in enumerate(rs):
         file = file_.name
         print('正在合并第 %d 个文件: %s' % (index + 1, file))
@@ -49,7 +60,8 @@ def combinexls():
         last_row_first = worksheet_first.max_row
 
         for row_index, row in enumerate(
-            worksheet_next.iter_rows(min_row=3, values_only=False), start=1
+            worksheet_next.iter_rows(min_row=start_index, values_only=False),
+            start=1
         ):
             for col_index, cell in enumerate(row, start=1):
                 # 将数据写入第一个工作表
